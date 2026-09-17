@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+     {% load static %}
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container"></div>
+    <h1>Student Management System</h1>
+
+    <h2>Welcome to the Dashboard</h2>
+
+    <a href="/add-student/">
+        <button>Add Student</button>
+    </a>
+
+    <h2>Student List</h2>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>CGPA</th>
+            <th>Action</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.student_id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.department }}</td>
+            <td>{{ student.year }}</td>
+            <td>{{ student.cgpa }}</td>
+            <td>
+               <a href="/edit-student/{{ student.id }}/">Edit</a>
+|
+<a href="/delete-student/{{ student.id }}/">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No students found.</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/logout/">Logout</a>
+</div>c
+</body>
+</html>
